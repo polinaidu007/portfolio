@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 interface ExperienceCardProps {
@@ -56,17 +55,19 @@ function App() {
         {
           state && (
             <>
-              <div className='h-[100vh] bg-[#0F172B] welcomeDiv flex justify-center items-center w-[100%] sticky top-0'>
+              <div className='min-h-[100vh] bg-[#0F172B] welcomeDiv flex justify-center items-center w-[100%] sticky top-0'>
                 <div className='w-[50%]'>
-                  <h1 className='text-9xl'>Welcome.</h1>
+                  <h1 className='sm:text-9xl text-5xl'>Welcome.</h1>
                   <span className='leading-relaxed'>
                     {introContent}
                   </span>
                 </div>
               </div>
-              <div className='bg-white w-[100%] h-[100vh] flex flex-col items-center text-black z-[1] relative'>  {/* EXPERIENCE SECTION*/}
-                <h1 className='text-9xl m-1'>EXPERIENCE</h1>
-                <div className='flex justify-around flex-grow items-center w-[100%] p-4'>
+              <div className='bg-white w-[100%] min-h-[100vh] flex-col flex items-center text-black z-[1] relative sm:flex-row'>  {/* EXPERIENCE SECTION*/}
+                <div className='sm:m-2 m-2 mt-5 min-w-[50%] flex justify-center'>
+                  <h1 className='sm:text-7xl text-5xl'>EXPERIENCE</h1>
+                </div>
+                <div className='flex flex-col justify-end items-center w-[100%] p-4'>
                   {
                     experienceDetails.map(item => (
                       <ExperienceCard key={item.company}
@@ -96,17 +97,17 @@ function App() {
 
 function ExperienceCard(props: ExperienceCardProps) {
   return (
-    <div className={'flex hover:bg-[#DDDDDD] hover:shadow-lg border border-black ' + props.cssAddonClass}> {/* Experience Card*/}
+    <div className={'flex hover:bg-[#DDDDDD] hover:shadow-lg max-w-full ' + props.cssAddonClass}> {/* Experience Card*/}
       {/* <div className='m-5 p-5 text-slate-500'>
         <span>2018 - PRESENT</span>
       </div> */}
-      <div className='flex flex-col items-start m-5 p-5'>
+      <div className='flex flex-col items-start m-5 p-5 max-w-full'>
         <div>{/* Heading and Role*/}
           <h1 className='font-medium text-black'>{`${props.company}, ${props.location}`}</h1>
           <span className='text-slate-500'>{props.role}</span>
         </div>
         <br></br>
-        <div className='text-slate-600 pl-10'> {/* Description regarding role*/}
+        <div className='text-slate-600 pl-10 max-w-full'> {/* Description regarding role*/}
           <ul className='list-disc'>
             {
               props.content.map(item => (
@@ -115,10 +116,10 @@ function ExperienceCard(props: ExperienceCardProps) {
             }
           </ul>
         </div>
-        <div className='flex pl-10'> {/* Skills acquired*/}
+        <div className='flex pl-10 max-w-full flex-wrap'> {/* Skills acquired*/}
           {
             props.skills.map(skill => (
-              <span className='bg-green-300 rounded-md p-1 m-1' key={skill}>{skill}</span>
+              <span className='bg-green-300 bg-opacity-50 rounded-md p-1 m-1 text-green-700 font-bold' key={skill}>{skill}</span>
             ))
           }
         </div>
